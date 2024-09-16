@@ -33,8 +33,10 @@ string binaryToHex (const string& strNumber);
  Returned:	 	Exit Status
  ******************************************************************************/
 int main () {
+  const string MY_TITLE = "*****HEX-DECIMAL-BINARY CONVERTER*****";
   char hexDigit;
 
+  printTitle(MY_TITLE);
   cout << "Enter a hex digit: ";
   cin >> hexDigit;
 
@@ -86,5 +88,13 @@ int hexCharToInt (char hexDigit) {
  Returned:	 	none
  ******************************************************************************/
 void printTitle (const string& myTitle) {
-  
+  const char ASTERISK = '*';
+  for (int i = 0; i < myTitle.length(); ++i) {
+    cout << ASTERISK;
+  }
+  cout << endl << myTitle << endl;
+  for (int i = 0; i < myTitle.length(); ++i) {
+    cout << ASTERISK;
+  }
+  cout << endl;
 }
