@@ -23,7 +23,7 @@ string hexToDecimal (const string& strNumber);
 string hexToBinary (const string& strNumber);
 string binaryToHex (const string& strNumber);
 
-/**************************************************************************
+/*******************************************************************************
  Function: 	 	main
 
  Description: converting base
@@ -31,7 +31,7 @@ string binaryToHex (const string& strNumber);
  Parameters:	none
 
  Returned:	 	Exit Status
- *************************************************************************/
+ ******************************************************************************/
 int main () {
   char hexDigit;
 
@@ -43,7 +43,7 @@ int main () {
   return EXIT_SUCCESS;
 }
 
-/**************************************************************************
+/*******************************************************************************
  Function: 	 	hexCharToInt
 
  Description: changes hex char to int
@@ -51,14 +51,40 @@ int main () {
  Parameters:	hexDigit - hex digit to be changed
 
  Returned:	 	int to be changed to
- *************************************************************************/
+ ******************************************************************************/
 int hexCharToInt (char hexDigit) {
-  const int ZERO = 0, TEN = 10;
+  const int ZERO = 0, TEN = 10, B_EQUAL = 11, C_EQUAL = 12, D_EQUAL = 13,
+            E_EQUAL = 14, F_EQUAL = 15;
+  const char HEX_A = 'A', HEX_B = 'B', HEX_C = 'C', HEX_D = 'D', HEX_E = 'E',
+             HEX_F = 'F';
   int hexInt = ZERO, tempInt = hexDigit - '0';
   if (tempInt > ZERO && tempInt < TEN) {
     hexInt = tempInt;
-  } else if (hexDigit == 'A') {
-    hexInt = 10;
+  } else if (hexDigit == HEX_A) {
+      hexInt = TEN;
+  } else if (hexDigit == HEX_B) {
+      hexInt = B_EQUAL;
+  } else if (hexDigit == HEX_C) {
+      hexInt = C_EQUAL;
+  } else if (hexDigit == HEX_D) {
+      hexInt = D_EQUAL;
+  } else if (hexDigit == HEX_E) {
+      hexInt = E_EQUAL;
+  } else if (hexDigit == HEX_F) {
+      hexInt = F_EQUAL;
   }
+
   return hexInt;
+}
+/*******************************************************************************
+ Function: 	 	printTitle
+
+ Description: printsTitle
+
+ Parameters:	myTitle - title of program
+
+ Returned:	 	none
+ ******************************************************************************/
+void printTitle (const string& myTitle) {
+  
 }
