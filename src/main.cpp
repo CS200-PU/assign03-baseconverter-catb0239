@@ -33,14 +33,12 @@ string binaryToHex (const string& strNumber);
  Returned:	 	Exit Status
  ******************************************************************************/
 int main () {
-  const string MY_TITLE = "*****HEX-DECIMAL-BINARY CONVERTER*****";
+  const string MY_TITLE = "*****HEX-DECIMAL-BINARY CONVERTER*****",
+               USER_PROMPT = "Enter your string to convert (q to quit):";
   char hexDigit;
 
   printTitle(MY_TITLE);
-  cout << "Enter a hex digit: ";
-  cin >> hexDigit;
-
-  cout << "Your hex digit is " << hexCharToInt(hexDigit) << endl;
+  getNumber(USER_PROMPT);
 
   return EXIT_SUCCESS;
 }
@@ -55,27 +53,7 @@ int main () {
  Returned:	 	int to be changed to
  ******************************************************************************/
 int hexCharToInt (char hexDigit) {
-  const int ZERO = 0, TEN = 10, B_EQUAL = 11, C_EQUAL = 12, D_EQUAL = 13,
-            E_EQUAL = 14, F_EQUAL = 15;
-  const char HEX_A = 'A', HEX_B = 'B', HEX_C = 'C', HEX_D = 'D', HEX_E = 'E',
-             HEX_F = 'F';
-  int hexInt = ZERO, tempInt = hexDigit - '0';
-  if (tempInt > ZERO && tempInt < TEN) {
-    hexInt = tempInt;
-  } else if (hexDigit == HEX_A) {
-      hexInt = TEN;
-  } else if (hexDigit == HEX_B) {
-      hexInt = B_EQUAL;
-  } else if (hexDigit == HEX_C) {
-      hexInt = C_EQUAL;
-  } else if (hexDigit == HEX_D) {
-      hexInt = D_EQUAL;
-  } else if (hexDigit == HEX_E) {
-      hexInt = E_EQUAL;
-  } else if (hexDigit == HEX_F) {
-      hexInt = F_EQUAL;
-  }
-
+  int hexInt ;
   return hexInt;
 }
 /*******************************************************************************
@@ -97,4 +75,21 @@ void printTitle (const string& myTitle) {
     cout << ASTERISK;
   }
   cout << endl;
+}
+
+/*******************************************************************************
+ Function: 	 	getNumber
+
+ Description: gets user input
+
+ Parameters:	prompt - prompt to display to screen
+
+ Returned:	 	string representing a decimal, hexidecimal, or binary number
+ ******************************************************************************/
+string getNumber (const string& prompt) {
+  string userInput;
+  cout << prompt;
+  cin >> userInput;
+
+  return userInput;
 }
