@@ -35,11 +35,15 @@ string binaryToHex (const string& strNumber);
 int main () {
   const string MY_TITLE = "*****HEX-DECIMAL-BINARY CONVERTER*****",
                USER_PROMPT = "Enter your string to convert (q to quit):";
-  char hexDigit;
+  string hexDigit;
+  int intForHex;
 
   printTitle(MY_TITLE);
-  getNumber(USER_PROMPT);
-
+  hexDigit = getNumber(USER_PROMPT);
+  for (int i = 0; i < hexDigit.length(); ++i) {
+    intForHex = hexCharToInt (hexDigit[i]);
+  }
+    cout << intForHex;
   return EXIT_SUCCESS;
 }
 
@@ -53,7 +57,17 @@ int main () {
  Returned:	 	int to be changed to
  ******************************************************************************/
 int hexCharToInt (char hexDigit) {
-  int hexInt ;
+  const int TEN = 10, ZERO = 0, FIVE = 5, THREE = 3;
+  const char ZERO_CHAR = '0';
+  int hexInt = (hexDigit % TEN), tempInt = hexDigit - ZERO_CHAR;
+  if (tempInt > ZERO && tempInt < TEN) {
+    hexInt = tempInt;
+  }
+  if (hexInt % TEN == ZERO) {
+    hexInt = FIVE * THREE;
+  } else {
+    hexInt = hexInt + FIVE;
+  }
   return hexInt;
 }
 /*******************************************************************************
