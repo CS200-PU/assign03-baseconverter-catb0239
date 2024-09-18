@@ -35,6 +35,7 @@ string binaryToHex (const string& strNumber);
 int main () {
   const string MY_TITLE = "*****HEX-DECIMAL-BINARY CONVERTER*****",
     USER_PROMPT = "Enter your string to convert (q to quit):";
+  const char DECIMAL = 'D', BINARY = 'B', HEXADECIMAL = 'H';
   string hexDigit;
   int intForHex;
   char baseChar;
@@ -43,8 +44,17 @@ int main () {
   hexDigit = getNumber (USER_PROMPT);
   baseChar = getBase (hexDigit);
 
-  for (int i = 0; i < hexDigit.length (); ++i) {
-    intForHex = hexCharToInt (hexDigit[i]);
+  if (baseChar == DECIMAL) {
+
+  }
+  else if (baseChar == HEXADECIMAL) {
+    for (int i = 0; i < hexDigit.length (); ++i) {
+      intForHex = hexCharToInt (hexDigit[i]);
+    }
+
+  }
+  else if (baseChar == BINARY) {
+
   }
 
   return EXIT_SUCCESS;
@@ -131,7 +141,8 @@ char getBase (const string& strNumber) {
     for (int i = 0; i <= 1; ++i) {
       if (strNumber[i] == BINARY_PREFIX[i]) {
         originalNumPrefix = BINARY;
-      } else if (strNumber[i] == HEXADECIMAL_PREFIX[i]) {
+      }
+      else if (strNumber[i] == HEXADECIMAL_PREFIX[i]) {
         originalNumPrefix = HEXADECIMAL;
       }
     }
@@ -149,13 +160,13 @@ char getBase (const string& strNumber) {
 
  Parameters:	strNumber - string carrying binary to convert to decimal
 
- Returned:	 	converted binary to decimal
+ Returned:	 	string representing the decimal equivalent
  ******************************************************************************/
 string binaryToDecimal (const string& strNumber) {
   string decimalNum;
 
 
-  for (int i = 2; i < strNumber.length(); i++) {
+  for (int i = 2; i < strNumber.length (); i++) {
     int num = static_cast<int>(strNumber[i]);
 
   }
@@ -169,17 +180,69 @@ string binaryToDecimal (const string& strNumber) {
 
  Parameters:	strNumber - string carrying decimal to convert to binary
 
- Returned:	 	converted decimal to binary
+ Returned:	 	string representing the binary equivalent
  ******************************************************************************/
 string decimalToBinary (const string& strNumber) {
-  int decimalConversion = stoi(strNumber);
-  string binaryToConvert[strNumber.length()], binaryConverted;
+  int decimalConversion = stoi (strNumber);
+  string binaryToConvert[strNumber.length ()], binaryConverted;
   char transferChar;
-  
-  for (int i = strNumber.length(); i > 0; i--) {
-    binaryToConvert[i] = to_string(decimalConversion % 2);
+
+  for (int i = strNumber.length (); i > 0; i--) {
+    binaryToConvert[i] = to_string (decimalConversion % 2);
     binaryConverted += binaryToConvert[i];
 
   }
   return binaryConverted;
+}
+
+/*******************************************************************************
+ Function: 	 	decimalToHex
+
+ Description: converts decimal to hexadecimal
+
+ Parameters:	strNumber - string carrying decimal to convert to hexadecimal
+
+ Returned:	 	string representing the hexadecimal equivalent
+ ******************************************************************************/
+string decimalToHex (const string& strNumber) {
+
+}
+
+/*******************************************************************************
+ Function: 	 	hexToDecimal
+
+ Description: converts hex to decimal
+
+ Parameters:	strNumber - string carrying hexadecimal to convert to decimal
+
+ Returned:	 	string representing decimal equivalent
+ ******************************************************************************/
+string hexToDecimal (const string& strNumber) {
+
+}
+
+/*******************************************************************************
+ Function: 	 	hexToBinary
+
+ Description: converts hex to binary
+
+ Parameters:	strNumber - string carrying hex to convert to binary
+
+ Returned:	 	string representing binary equivalent
+ ******************************************************************************/
+string hexToBinary (const string& strNumber) {
+
+}
+
+/*******************************************************************************
+ Function: 	 	binaryToHex
+
+ Description: converts binary to hex
+
+ Parameters:	strNumber - string carrying binary to convert to hex
+
+ Returned:	 	string representing the hexadecimal equivalent
+ ******************************************************************************/
+string binaryToHex (const string& strNumber) {
+
 }
