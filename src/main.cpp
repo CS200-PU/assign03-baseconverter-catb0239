@@ -163,14 +163,16 @@ char getBase (const string& strNumber) {
  Returned:	 	string representing the decimal equivalent
  ******************************************************************************/
 string binaryToDecimal (const string& strNumber) {
-  string decimalNum;
+  const int BINARY_NUM = 2;
+  int convertedNum = 0, count = strNumber.length();
 
 
   for (int i = 2; i < strNumber.length (); i++) {
     int num = static_cast<int>(strNumber[i]);
-
+    convertedNum += num * BINARY_NUM ^ count;
+    count--;
   }
-  return decimalNum;
+  return to_string(convertedNum);
 }
 
 /*******************************************************************************
