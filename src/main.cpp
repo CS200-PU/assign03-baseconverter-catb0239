@@ -13,7 +13,7 @@
 using namespace std;
 
 int hexCharToInt (char hexDigit);
-char getBase(const string& strNumber);
+char getBase (const string& strNumber);
 string getNumber (const string& prompt);
 void printTitle (const string& myTitle);
 string binaryToDecimal (const string& strNumber);
@@ -34,13 +34,17 @@ string binaryToHex (const string& strNumber);
  ******************************************************************************/
 int main () {
   const string MY_TITLE = "*****HEX-DECIMAL-BINARY CONVERTER*****",
-               USER_PROMPT = "Enter your string to convert (q to quit):";
+    USER_PROMPT = "Enter your string to convert (q to quit):";
   string hexDigit;
   int intForHex;
+  char baseChar;
 
-  printTitle(MY_TITLE);
-  hexDigit = getNumber(USER_PROMPT);
-  for (int i = 0; i < hexDigit.length(); ++i) {
+  printTitle (MY_TITLE);
+  hexDigit = getNumber (USER_PROMPT);
+  baseChar = getBase (hexDigit);
+
+
+  for (int i = 0; i < hexDigit.length (); ++i) {
     intForHex = hexCharToInt (hexDigit[i]);
   }
 
@@ -65,7 +69,8 @@ int hexCharToInt (char hexDigit) {
   }
   if (hexInt % TEN == ZERO) {
     hexInt = FIVE * THREE;
-  } else {
+  }
+  else {
     hexInt = hexInt + FIVE;
   }
   return hexInt;
@@ -81,11 +86,11 @@ int hexCharToInt (char hexDigit) {
  ******************************************************************************/
 void printTitle (const string& myTitle) {
   const char ASTERISK = '*';
-  for (int i = 0; i < myTitle.length(); ++i) {
+  for (int i = 0; i < myTitle.length (); ++i) {
     cout << ASTERISK;
   }
   cout << endl << myTitle << endl;
-  for (int i = 0; i < myTitle.length(); ++i) {
+  for (int i = 0; i < myTitle.length (); ++i) {
     cout << ASTERISK;
   }
   cout << endl;
@@ -111,12 +116,29 @@ string getNumber (const string& prompt) {
 /*******************************************************************************
  Function: 	 	getBase
 
- Description: get the base 
+ Description: get the base of the string input
 
- Parameters:	prompt - prompt to display to screen
+ Parameters:	strNumber - string representing a decimal, hexadecimal or binary
 
- Returned:	 	string representing a decimal, hexidecimal, or binary number
+ Returned:	 	D if its decimal, H if its hexadecimal, B if its binary
  ******************************************************************************/
-char getBase(const string& strNumber) {
-  
+char getBase (const string& strNumber) {
+  const string BINARY_PREFIX = "0b", HEXADECIMAL_PREFIX = "0x";
+  const char BINARY = 'B', HEXADECIMAL = 'H', DECIMAL = 'D';
+  int strLen = strNumber.length ();
+  char originalNumPrefix;
+
+  if (strLen > 2) {
+    for (int i = 0; i <= 1; ++i) {
+      if (strNumber[i] == BINARY_PREFIX[i]) {
+        originalNumPrefix = BINARY;
+      } else if (strNumber[i] == HEXADECIMAL_PREFIX[i]) {
+        originalNumPrefix = HEXADECIMAL;
+      }
+    }
+  }
+  else {
+    originalNumPrefix = DECIMAL;
+  }
+  return originalNumPrefix;
 }
