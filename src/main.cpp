@@ -43,7 +43,6 @@ int main () {
   hexDigit = getNumber (USER_PROMPT);
   baseChar = getBase (hexDigit);
 
-
   for (int i = 0; i < hexDigit.length (); ++i) {
     intForHex = hexCharToInt (hexDigit[i]);
   }
@@ -141,4 +140,46 @@ char getBase (const string& strNumber) {
     originalNumPrefix = DECIMAL;
   }
   return originalNumPrefix;
+}
+
+/*******************************************************************************
+ Function: 	 	binaryToDecimal
+
+ Description: converts binary to decimal
+
+ Parameters:	strNumber - string carrying binary to convert to decimal
+
+ Returned:	 	converted binary to decimal
+ ******************************************************************************/
+string binaryToDecimal (const string& strNumber) {
+  string decimalNum;
+
+
+  for (int i = 2; i < strNumber.length(); i++) {
+    int num = static_cast<int>(strNumber[i]);
+
+  }
+  return decimalNum;
+}
+
+/*******************************************************************************
+ Function: 	 	decimalToBinary
+
+ Description: converts decimal to binary
+
+ Parameters:	strNumber - string carrying decimal to convert to binary
+
+ Returned:	 	converted decimal to binary
+ ******************************************************************************/
+string decimalToBinary (const string& strNumber) {
+  int decimalConversion = stoi(strNumber);
+  string binaryToConvert[strNumber.length()], binaryConverted;
+  char transferChar;
+  
+  for (int i = strNumber.length(); i > 0; i--) {
+    binaryToConvert[i] = to_string(decimalConversion % 2);
+    binaryConverted += binaryToConvert[i];
+
+  }
+  return binaryConverted;
 }
