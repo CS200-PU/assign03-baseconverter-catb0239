@@ -43,7 +43,7 @@ int main () {
   for (int i = 0; i < hexDigit.length(); ++i) {
     intForHex = hexCharToInt (hexDigit[i]);
   }
-    cout << intForHex;
+
   return EXIT_SUCCESS;
 }
 
@@ -60,7 +60,7 @@ int hexCharToInt (char hexDigit) {
   const int TEN = 10, ZERO = 0, FIVE = 5, THREE = 3;
   const char ZERO_CHAR = '0';
   int hexInt = (hexDigit % TEN), tempInt = hexDigit - ZERO_CHAR;
-  if (tempInt > ZERO && tempInt < TEN) {
+  if (tempInt < TEN) {
     hexInt = tempInt;
   }
   if (hexInt % TEN == ZERO) {
@@ -106,4 +106,17 @@ string getNumber (const string& prompt) {
   cin >> userInput;
 
   return userInput;
+}
+
+/*******************************************************************************
+ Function: 	 	getBase
+
+ Description: get the base 
+
+ Parameters:	prompt - prompt to display to screen
+
+ Returned:	 	string representing a decimal, hexidecimal, or binary number
+ ******************************************************************************/
+char getBase(const string& strNumber) {
+  
 }
