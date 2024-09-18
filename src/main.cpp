@@ -12,6 +12,11 @@
 
 using namespace std;
 
+const string BINARY_CONVERSION_STATEMENT = "The binary conversion is: ",
+             HEXADECIMAL_CONVERSION_STATEMENT =
+                                            "The hexadeciomal conversion is: ",
+             DECIMAL_CONVERSION_STATEMENT = "The decimal conversion is: ";
+
 int hexCharToInt (char hexDigit);
 char getBase (const string& strNumber);
 string getNumber (const string& prompt);
@@ -220,7 +225,11 @@ string decimalToHex (const string& strNumber) {
  Returned:	 	string representing decimal equivalent
  ******************************************************************************/
 string hexToDecimal (const string& strNumber) {
-
+  int num = 0;
+  for (int i = 0; i < strNumber.length(); i++ ){
+    num += hexCharToInt(strNumber[i]);
+  }
+  return to_string(num);
 }
 
 /*******************************************************************************
