@@ -40,29 +40,26 @@ string binaryToHex (const string& strNumber);
 int main () {
   const string MY_TITLE = "*****HEX-DECIMAL-BINARY CONVERTER*****",
     USER_PROMPT = "Enter your string to convert (q to quit):";
+
   const char DECIMAL = 'D', BINARY = 'B', HEXADECIMAL = 'H';
-  string hexDigit;
+  string myNumber;
   int intForHex, addedInt;
   char baseChar;
-
   printTitle (MY_TITLE);
-  hexDigit = getNumber (USER_PROMPT);
-  baseChar = getBase (hexDigit);
-  int tempInt = stoi(hexDigit);
-  string tempString = to_string(tempInt);
+  myNumber = getNumber (USER_PROMPT);
+  baseChar = getBase (myNumber);
 
   if (baseChar == DECIMAL) {
-
+    cout << "The binary conversion is: " << decimalToBinary(myNumber) << endl;
+    cout << "The hexadecimal conversion is: " << decimalToHex(myNumber) << endl;
   }
   else if (baseChar == HEXADECIMAL) {
-    for (int i = 2; i < hexDigit.length (); ++i) {
-      intForHex = hexToDecimal(tempString);
-      addedInt += intForHex;
-    }
-
+    cout << "The decimal conversion is: " << hexToDecimal (myNumber) << endl;
+    cout << "The binary conversion is: " << hexToBinary (myNumber) << endl;
   }
   else if (baseChar == BINARY) {
-
+    cout << "The decimal conversion is: " << binaryToDecimal(myNumber) << endl;
+    cout << "The hexadecimal conversion is: " << binaryToHex(myNumber) << endl;
   }
 
   return EXIT_SUCCESS;
