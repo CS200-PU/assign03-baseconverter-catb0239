@@ -42,19 +42,22 @@ int main () {
     USER_PROMPT = "Enter your string to convert (q to quit):";
   const char DECIMAL = 'D', BINARY = 'B', HEXADECIMAL = 'H';
   string hexDigit;
-  int intForHex;
+  int intForHex, addedInt;
   char baseChar;
 
   printTitle (MY_TITLE);
   hexDigit = getNumber (USER_PROMPT);
   baseChar = getBase (hexDigit);
+  int tempInt = stoi(hexDigit);
+  string tempString = to_string(tempInt);
 
   if (baseChar == DECIMAL) {
 
   }
   else if (baseChar == HEXADECIMAL) {
-    for (int i = 0; i < hexDigit.length (); ++i) {
-      intForHex = hexCharToInt (hexDigit[i]);
+    for (int i = 2; i < hexDigit.length (); ++i) {
+      intForHex = hexToDecimal(tempString);
+      addedInt += intForHex;
     }
 
   }
@@ -78,6 +81,7 @@ int hexCharToInt (char hexDigit) {
   const int TEN = 10, ZERO = 0, FIVE = 5, THREE = 3;
   const char ZERO_CHAR = '0';
   int hexInt = (hexDigit % TEN), tempInt = hexDigit - ZERO_CHAR;
+  string secondChar[2];
   if (tempInt < TEN) {
     hexInt = tempInt;
   }
@@ -89,6 +93,7 @@ int hexCharToInt (char hexDigit) {
   }
   return hexInt;
 }
+
 /*******************************************************************************
  Function: 	 	printTitle
 
