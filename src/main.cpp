@@ -12,11 +12,6 @@
 
 using namespace std;
 
-const string BINARY_CONVERSION_STATEMENT = "The binary conversion is: ",
-             HEXADECIMAL_CONVERSION_STATEMENT =
-                                            "The hexadeciomal conversion is: ",
-             DECIMAL_CONVERSION_STATEMENT = "The decimal conversion is: ";
-
 int hexCharToInt (char hexDigit);
 char getBase (const string& strNumber);
 string getNumber (const string& prompt);
@@ -50,16 +45,16 @@ int main () {
   baseChar = getBase (myNumber);
 
   if (baseChar == DECIMAL) {
-    cout << "The binary conversion is: " << decimalToBinary(myNumber) << endl;
-    cout << "The hexadecimal conversion is: " << decimalToHex(myNumber) << endl;
+    cout << "The binary conversion is: " << decimalToBinary (myNumber) << endl;
+    cout << "The hexadecimal conversion is: " << decimalToHex (myNumber) << endl;
   }
   else if (baseChar == HEXADECIMAL) {
     cout << "The decimal conversion is: " << hexToDecimal (myNumber) << endl;
     cout << "The binary conversion is: " << hexToBinary (myNumber) << endl;
   }
   else if (baseChar == BINARY) {
-    cout << "The decimal conversion is: " << binaryToDecimal(myNumber) << endl;
-    cout << "The hexadecimal conversion is: " << binaryToHex(myNumber) << endl;
+    cout << "The decimal conversion is: " << binaryToDecimal (myNumber) << endl;
+    cout << "The hexadecimal conversion is: " << binaryToHex (myNumber) << endl;
   }
 
   return EXIT_SUCCESS;
@@ -171,7 +166,7 @@ char getBase (const string& strNumber) {
  ******************************************************************************/
 string binaryToDecimal (const string& strNumber) {
   const int BINARY_NUM = 2;
-  int convertedNum = 0, count = strNumber.length();
+  int convertedNum = 0, count = strNumber.length ();
 
 
   for (int i = 2; i < strNumber.length (); i++) {
@@ -179,7 +174,7 @@ string binaryToDecimal (const string& strNumber) {
     convertedNum += num * BINARY_NUM ^ count;
     count--;
   }
-  return to_string(convertedNum);
+  return to_string (convertedNum);
 }
 
 /*******************************************************************************
@@ -214,7 +209,54 @@ string decimalToBinary (const string& strNumber) {
  Returned:	 	string representing the hexadecimal equivalent
  ******************************************************************************/
 string decimalToHex (const string& strNumber) {
-
+  string hexString;
+  char hexChar;
+  int decimalInt = stoi (strNumber), returningInt;
+  returningInt = decimalInt % 16;
+  while (returningInt != 0) {
+    if (returningInt > 9) {
+      if (returningInt == 10) {
+        hexChar = 'A';
+      }
+      else if (returningInt == 11) {
+        hexChar = 'B';
+      }
+      else if (returningInt == 12) {
+        hexChar = 'C';
+      }
+      else if (returningInt == 13) {
+        hexChar = 'D';
+      }
+      else if (returningInt == 14) {
+        hexChar = 'E';
+      }
+      else if (returningInt == 15) {
+        hexChar = 'F';
+      }
+    }
+    hexString += hexChar;
+    returningInt = decimalInt % 16;
+  }
+  if (decimalInt > 9) {
+    if (returningInt == 10) {
+      hexChar = 'A';
+    }
+    else if (returningInt == 11) {
+      hexChar = 'B';
+    }
+    else if (returningInt == 12) {
+      hexChar = 'C';
+    }
+    else if (returningInt == 13) {
+      hexChar = 'D';
+    }
+    else if (returningInt == 14) {
+      hexChar = 'E';
+    }
+    else if (returningInt == 15) {
+      hexChar = 'F';
+    }
+  }
 }
 
 /*******************************************************************************
@@ -228,10 +270,10 @@ string decimalToHex (const string& strNumber) {
  ******************************************************************************/
 string hexToDecimal (const string& strNumber) {
   int num = 0;
-  for (int i = 0; i < strNumber.length(); i++ ){
-    num += hexCharToInt(strNumber[i]);
+  for (int i = 0; i < strNumber.length (); i++) {
+    num += hexCharToInt (strNumber[i]);
   }
-  return to_string(num);
+  return to_string (num);
 }
 
 /*******************************************************************************
