@@ -36,27 +36,33 @@ int main () {
   const string MY_TITLE = "*****HEX-DECIMAL-BINARY CONVERTER*****",
     USER_PROMPT = "Enter your string to convert (q to quit):";
 
-  const char DECIMAL = 'D', BINARY = 'B', HEXADECIMAL = 'H';
+  const char DECIMAL = 'D', BINARY = 'B', HEXADECIMAL = 'H', QUIT = 'q';
   string myNumber;
   int intForHex, addedInt;
   char baseChar;
   printTitle (MY_TITLE);
-  myNumber = getNumber (USER_PROMPT);
-  baseChar = getBase (myNumber);
-
-  if (baseChar == DECIMAL) {
-    cout << "The binary conversion is: " << decimalToBinary (myNumber) << endl;
-    cout << "The hexadecimal conversion is: " << decimalToHex (myNumber) << endl;
+  if (baseChar != DECIMAL && baseChar != HEXADECIMAL && baseChar != BINARY) {
+    baseChar = QUIT;
   }
-  else if (baseChar == HEXADECIMAL) {
-    cout << "The decimal conversion is: " << hexToDecimal (myNumber) << endl;
-    cout << "The binary conversion is: " << hexToBinary (myNumber) << endl;
+  while (baseChar != QUIT) {
+    myNumber = getNumber (USER_PROMPT);
+    baseChar = getBase (myNumber);
+    if (baseChar != DECIMAL && baseChar != HEXADECIMAL && baseChar != BINARY) {
+      baseChar = QUIT;
+    }
+    if (baseChar == DECIMAL) {
+      cout << "The binary conversion is: " << decimalToBinary (myNumber) << endl;
+      cout << "The hexadecimal conversion is: " << decimalToHex (myNumber) << endl;
+    }
+    else if (baseChar == HEXADECIMAL) {
+      cout << "The decimal conversion is: " << hexToDecimal (myNumber) << endl;
+      cout << "The binary conversion is: " << hexToBinary (myNumber) << endl;
+    }
+    else if (baseChar == BINARY) {
+      cout << "The decimal conversion is: " << binaryToDecimal (myNumber) << endl;
+      cout << "The hexadecimal conversion is: " << binaryToHex (myNumber) << endl;
+    }
   }
-  else if (baseChar == BINARY) {
-    cout << "The decimal conversion is: " << binaryToDecimal (myNumber) << endl;
-    cout << "The hexadecimal conversion is: " << binaryToHex (myNumber) << endl;
-  }
-
   return EXIT_SUCCESS;
 }
 
