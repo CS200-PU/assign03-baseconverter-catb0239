@@ -38,8 +38,7 @@ int main () {
 
   const char DECIMAL = 'D', BINARY = 'B', HEXADECIMAL = 'H', QUIT = 'q';
   string myNumber;
-  int intForHex, addedInt;
-  char baseChar;
+  char baseChar = '\0';
   printTitle (MY_TITLE);
   if (baseChar != DECIMAL && baseChar != HEXADECIMAL && baseChar != BINARY) {
     baseChar = QUIT;
@@ -195,7 +194,6 @@ string binaryToDecimal (const string& strNumber) {
 string decimalToBinary (const string& strNumber) {
   int decimalConversion = stoi (strNumber);
   string binaryToConvert[strNumber.length ()], binaryConverted;
-  char transferChar;
 
   for (int i = strNumber.length (); i > 0; i--) {
     binaryToConvert[i] = to_string (decimalConversion % 2);
@@ -263,6 +261,8 @@ string decimalToHex (const string& strNumber) {
       hexChar = 'F';
     }
   }
+
+  return ;
 }
 
 /*******************************************************************************
@@ -292,7 +292,8 @@ string hexToDecimal (const string& strNumber) {
  Returned:	 	string representing binary equivalent
  ******************************************************************************/
 string hexToBinary (const string& strNumber) {
-
+  string decimalString = hexToDecimal(strNumber);
+  return decimalToBinary(decimalString);
 }
 
 /*******************************************************************************
@@ -305,5 +306,6 @@ string hexToBinary (const string& strNumber) {
  Returned:	 	string representing the hexadecimal equivalent
  ******************************************************************************/
 string binaryToHex (const string& strNumber) {
-
+  string decimalString = binaryToDecimal(strNumber);
+  return decimalToHex(decimalString);
 }
