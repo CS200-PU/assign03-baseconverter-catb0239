@@ -22,6 +22,7 @@ string decimalToHex (const string& strNumber);
 string hexToDecimal (const string& strNumber);
 string hexToBinary (const string& strNumber);
 string binaryToHex (const string& strNumber);
+string reverseString (string& reversingStr);
 
 /*******************************************************************************
  Function: 	 	main
@@ -40,27 +41,33 @@ int main () {
   string myNumber;
   char baseChar = '\0';
   printTitle (MY_TITLE);
+  myNumber = getNumber (USER_PROMPT);
+  baseChar = getBase (myNumber);
   if (baseChar != DECIMAL && baseChar != HEXADECIMAL && baseChar != BINARY) {
     baseChar = QUIT;
   }
   while (baseChar != QUIT) {
-    myNumber = getNumber (USER_PROMPT);
-    baseChar = getBase (myNumber);
     if (baseChar != DECIMAL && baseChar != HEXADECIMAL && baseChar != BINARY) {
       baseChar = QUIT;
     }
     if (baseChar == DECIMAL) {
-      cout << "The binary conversion is: " << decimalToBinary (myNumber) << endl;
-      cout << "The hexadecimal conversion is: " << decimalToHex (myNumber) << endl;
+      cout << "The binary conversion is: " << decimalToBinary (myNumber)
+        << endl;
+      cout << "The hexadecimal conversion is: " << decimalToHex (myNumber)
+        << endl;
     }
     else if (baseChar == HEXADECIMAL) {
       cout << "The decimal conversion is: " << hexToDecimal (myNumber) << endl;
       cout << "The binary conversion is: " << hexToBinary (myNumber) << endl;
     }
     else if (baseChar == BINARY) {
-      cout << "The decimal conversion is: " << binaryToDecimal (myNumber) << endl;
-      cout << "The hexadecimal conversion is: " << binaryToHex (myNumber) << endl;
+      cout << "The decimal conversion is: " << binaryToDecimal (myNumber)
+        << endl;
+      cout << "The hexadecimal conversion is: " << binaryToHex (myNumber)
+        << endl;
     }
+    myNumber = getNumber (USER_PROMPT);
+    baseChar = getBase (myNumber);
   }
   return EXIT_SUCCESS;
 }
@@ -82,7 +89,7 @@ int hexCharToInt (char hexDigit) {
   if (tempInt < TEN) {
     hexInt = tempInt;
   }
-  if (hexInt % TEN == ZERO) {
+  else if (hexInt % TEN == ZERO) {
     hexInt = FIVE * THREE;
   }
   else {
@@ -261,8 +268,9 @@ string decimalToHex (const string& strNumber) {
       hexChar = 'F';
     }
   }
-
-  return ;
+  hexString += hexChar;
+  hexString = reverseString (hexString);
+  return hexString;
 }
 
 /*******************************************************************************
@@ -292,8 +300,8 @@ string hexToDecimal (const string& strNumber) {
  Returned:	 	string representing binary equivalent
  ******************************************************************************/
 string hexToBinary (const string& strNumber) {
-  string decimalString = hexToDecimal(strNumber);
-  return decimalToBinary(decimalString);
+  string decimalString = hexToDecimal (strNumber);
+  return decimalToBinary (decimalString);
 }
 
 /*******************************************************************************
@@ -306,6 +314,25 @@ string hexToBinary (const string& strNumber) {
  Returned:	 	string representing the hexadecimal equivalent
  ******************************************************************************/
 string binaryToHex (const string& strNumber) {
-  string decimalString = binaryToDecimal(strNumber);
-  return decimalToHex(decimalString);
+  string decimalString = binaryToDecimal (strNumber);
+  return decimalToHex (decimalString);
+}
+
+/*******************************************************************************
+ Function: 	 	reverseString
+
+ Description: reverse input string
+
+ Parameters:	reversingStr - string that needs to be reversed
+
+ Returned:	 	reversed string
+*******************************************************************************/
+string reverseString (string& reversingStr) {
+  string reversedString;
+  int count = reversingStr.length ();
+  for (int i = 0; i < reversingStr.length (); ++i) {
+    reversedString[i] = reversingStr[count];
+    --count;
+  }
+  return reversedString;
 }
