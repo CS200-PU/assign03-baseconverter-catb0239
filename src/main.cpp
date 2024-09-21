@@ -47,9 +47,6 @@ int main () {
     baseChar = QUIT;
   }
   while (baseChar != QUIT) {
-    if (baseChar != DECIMAL && baseChar != HEXADECIMAL && baseChar != BINARY) {
-      baseChar = QUIT;
-    }
     if (baseChar == DECIMAL) {
       cout << "The binary conversion is: " << decimalToBinary (myNumber)
         << endl;
@@ -85,7 +82,6 @@ int hexCharToInt (char hexDigit) {
   const int TEN = 10, ZERO = 0, FIVE = 5, THREE = 3;
   const char ZERO_CHAR = '0';
   int hexInt = (hexDigit % TEN), tempInt = hexDigit - ZERO_CHAR;
-  string secondChar[2];
   if (tempInt < TEN) {
     hexInt = tempInt;
   }
@@ -183,7 +179,7 @@ string binaryToDecimal (const string& strNumber) {
 
   for (int i = 2; i < strNumber.length (); i++) {
     int num = static_cast<int>(strNumber[i]);
-    convertedNum += num * BINARY_NUM ^ count;
+    convertedNum += num * (BINARY_NUM ^ count);
     count--;
   }
   return to_string (convertedNum);
@@ -199,14 +195,10 @@ string binaryToDecimal (const string& strNumber) {
  Returned:	 	string representing the binary equivalent
  ******************************************************************************/
 string decimalToBinary (const string& strNumber) {
-  int decimalConversion = stoi (strNumber);
-  string binaryToConvert[strNumber.length ()], binaryConverted;
+  int decimalConversion = stoi(strNumber), count = 0;
+  string binaryToConvert, binaryConverted;
 
-  for (int i = strNumber.length (); i > 0; i--) {
-    binaryToConvert[i] = to_string (decimalConversion % 2);
-    binaryConverted += binaryToConvert[i];
 
-  }
   return binaryConverted;
 }
 
@@ -284,7 +276,7 @@ string decimalToHex (const string& strNumber) {
  ******************************************************************************/
 string hexToDecimal (const string& strNumber) {
   int num = 0;
-  for (int i = 0; i < strNumber.length (); i++) {
+  for (int i = 2; i < strNumber.length (); i++) {
     num += hexCharToInt (strNumber[i]);
   }
   return to_string (num);
