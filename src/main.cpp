@@ -197,7 +197,11 @@ string binaryToDecimal (const string& strNumber) {
 string decimalToBinary (const string& strNumber) {
   int decimalConversion = stoi(strNumber), count = 0;
   string binaryToConvert, binaryConverted;
-
+  
+  while (decimalConversion /= 2 != 1) {
+    binaryToConvert[count] = decimalConversion % 2;
+    count++;
+  }
 
   return binaryConverted;
 }
@@ -319,11 +323,11 @@ string binaryToHex (const string& strNumber) {
 
  Returned:	 	reversed string
 *******************************************************************************/
-string reverseString (string& reversingStr) {
+string reverseString (string& strToReverse) {
   string reversedString;
-  int count = reversingStr.length ();
-  for (int i = 0; i < reversingStr.length (); ++i) {
-    reversedString[i] = reversingStr[count];
+  int count = strToReverse.length ();
+  for (int i = 0; i < strToReverse.length (); ++i) {
+    reversedString[i] = strToReverse[count];
     --count;
   }
   return reversedString;
