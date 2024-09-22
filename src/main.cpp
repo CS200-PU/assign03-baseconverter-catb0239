@@ -65,8 +65,8 @@ int main () {
     }
     myNumber = getNumber (USER_PROMPT);
     baseChar = getBase (myNumber);
-    if (myNumber != DECIMAL && myNumber != HEXADECIMAL && myNumber != BINARY) {
-      myNumber = QUIT;
+    if (baseChar != DECIMAL && baseChar != HEXADECIMAL && baseChar != BINARY) {
+      baseChar = QUIT;
     }
   }
   return EXIT_SUCCESS;
