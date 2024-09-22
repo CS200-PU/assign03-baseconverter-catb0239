@@ -196,17 +196,17 @@ string binaryToDecimal (const string& strNumber) {
  ******************************************************************************/
 string decimalToBinary (const string& strNumber) {
   int decimalConversion = stoi(strNumber), count = 0,
-      decimalDivide = decimalConversion;
-  char modDecimal;
-  string binaryToConvert;
+      decimalDivide = decimalConversion, modDecimal;
+  string decimalToConvert;
   while (decimalDivide != 1) {
     modDecimal = decimalConversion % 2;
-    binaryToConvert[count] = modDecimal;
+    decimalToConvert += modDecimal;
     count++;
     decimalDivide /= 2;
   }
-  binaryToConvert[count] = decimalDivide % 2;
-  return binaryToConvert;
+  modDecimal = decimalDivide % 2;
+  decimalToConvert += modDecimal;
+  return decimalToConvert;
 }
 
 /*******************************************************************************
