@@ -179,12 +179,11 @@ char getBase (const string& strNumber) {
  ******************************************************************************/
 string binaryToDecimal (const string& strNumber) {
   const int BINARY_NUM = 2;
-  int convertedNum = 0, count = strNumber.length ();
-
+  int convertedNum = 0, count = strNumber.length();
+  count--;
 
   for (int i = 2; i < strNumber.length (); i++) {
-    int num = static_cast<int>(strNumber[i]);
-    convertedNum += num * (BINARY_NUM ^ count);
+    convertedNum += (BINARY_NUM ^ count);
     count--;
   }
   return to_string (convertedNum);
