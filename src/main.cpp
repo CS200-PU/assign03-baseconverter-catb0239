@@ -47,26 +47,27 @@ int main () {
   }
   while (baseChar != QUIT) {
     if (baseChar == DECIMAL) {
-      convertedString = decimalToBinary (myNumber);
-      cout << "The binary conversion is: " << convertedString << endl;
-      convertedString = decimalToHex (myNumber);
-      cout << "The hexadecimal conversion is: " << convertedString << endl;
+      cout << "The binary conversion is:  " << decimalToBinary(myNumber)
+           << endl;
+      cout << "The hexadecimal conversion is:  " << decimalToHex(myNumber)
+           << endl << endl;
     }
     else if (baseChar == HEXADECIMAL) {
       cout << "The decimal conversion is: " << hexToDecimal (myNumber) << endl;
-      cout << "The binary conversion is: " << hexToBinary (myNumber) << endl;
+      cout << "The binary conversion is: " << hexToBinary (myNumber) << endl
+           << endl;
     }
     else if (baseChar == BINARY) {
       cout << "The decimal conversion is: " << binaryToDecimal (myNumber)
         << endl;
       cout << "The hexadecimal conversion is: " << binaryToHex (myNumber)
-        << endl;
+        << endl << endl;
     }
     myNumber = getNumber (USER_PROMPT);
+    baseChar = getBase (myNumber);
     if (myNumber != DECIMAL && myNumber != HEXADECIMAL && myNumber != BINARY) {
       myNumber = QUIT;
     }
-    baseChar = getBase (myNumber);
   }
   return EXIT_SUCCESS;
 }
