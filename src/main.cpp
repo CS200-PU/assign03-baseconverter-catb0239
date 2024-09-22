@@ -224,7 +224,7 @@ string decimalToBinary (const string& strNumber) {
   }
   modDecimal = decimalDivide % 2;
   decimalToConvert += to_string (modDecimal);
-  return decimalToConvert;
+  return reverseString(decimalToConvert);
 }
 
 /*******************************************************************************
@@ -364,11 +364,22 @@ string binaryToHex (const string& strNumber) {
  Returned:	 	reversed string
 *******************************************************************************/
 string reverseString (string& strToReverse) {
-  string reversedString;
+  string reversedString[strToReverse.length()], stringReversed;
   int count = strToReverse.length ();
-  for (int i = 0; i < strToReverse.length (); ++i) {
+  stringReversed += '0';
+  for (int i = 1; i < 2; ++i) {
+    if (strToReverse[i] == 'b') {
+      stringReversed += 'b';
+    } else {
+      stringReversed += 'x';
+    }
+  }
+  for (int i = 1; i < strToReverse.length (); ++i) {
     reversedString[i] = strToReverse[count];
     --count;
   }
-  return reversedString;
+  for (int i = 2; i < strToReverse.length(); i++) {
+    stringReversed += reversedString[i];
+  }
+  return stringReversed;
 }
