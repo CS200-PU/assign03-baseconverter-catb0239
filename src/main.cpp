@@ -195,17 +195,22 @@ string binaryToDecimal (const string& strNumber) {
  Returned:	 	string representing the binary equivalent
  ******************************************************************************/
 string decimalToBinary (const string& strNumber) {
+  const char BINARY = 'b';
   int decimalConversion = stoi(strNumber), count = 0,
       decimalDivide = decimalConversion, modDecimal;
   string decimalToConvert;
+  decimalToConvert += to_string(count);
+  count++;
+  decimalToConvert += BINARY;
+  count++;
   while (decimalDivide != 1) {
     modDecimal = decimalConversion % 2;
-    decimalToConvert += modDecimal;
+    decimalToConvert += to_string(modDecimal);
     count++;
     decimalDivide /= 2;
   }
   modDecimal = decimalDivide % 2;
-  decimalToConvert += modDecimal;
+  decimalToConvert += to_string(modDecimal);
   return decimalToConvert;
 }
 
