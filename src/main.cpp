@@ -225,7 +225,8 @@ string decimalToHex (const string& strNumber) {
   returningInt = decimalInt % 16;
   while (returningInt != 0) {
     if (returningInt > 9) {
-      if (returningInt == 10) {
+      hexChar += decimalInt;
+    } else if (returningInt == 10) {
         hexChar = 'A';
         returningInt -= 10;
       }
@@ -249,7 +250,6 @@ string decimalToHex (const string& strNumber) {
         hexChar = 'F';
         returningInt -= 15;
       }
-    }
     hexString += hexChar;
     returningInt %= 16;
   }
@@ -290,7 +290,7 @@ string decimalToHex (const string& strNumber) {
 string hexToDecimal (const string& strNumber) {
   int num = 0;
   for (int i = 2; i < strNumber.length (); i++) {
-    num += hexCharToInt (strNumber[i]);
+    num += hexCharToInt(strNumber[i]);
   }
   return to_string (num);
 }
