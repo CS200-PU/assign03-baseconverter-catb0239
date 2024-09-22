@@ -38,7 +38,7 @@ int main () {
     USER_PROMPT = "Enter your string to convert (q to quit):";
 
   const char DECIMAL = 'D', BINARY = 'B', HEXADECIMAL = 'H', QUIT = 'q';
-  string myNumber;
+  string myNumber, convertedString;
   char baseChar = '\0';
   printTitle (MY_TITLE);
   myNumber = getNumber (USER_PROMPT);
@@ -48,10 +48,10 @@ int main () {
   }
   while (baseChar != QUIT) {
     if (baseChar == DECIMAL) {
-      cout << "The binary conversion is: " << decimalToBinary (myNumber)
-        << endl;
-      cout << "The hexadecimal conversion is: " << decimalToHex (myNumber)
-        << endl;
+      convertedString = decimalToBinary(myNumber);
+      cout << "The binary conversion is: " << convertedString << endl;
+      convertedString = decimalToHex(myNumber);
+      cout << "The hexadecimal conversion is: " << convertedString << endl;
     }
     else if (baseChar == HEXADECIMAL) {
       cout << "The decimal conversion is: " << hexToDecimal (myNumber) << endl;
@@ -197,9 +197,11 @@ string binaryToDecimal (const string& strNumber) {
 string decimalToBinary (const string& strNumber) {
   int decimalConversion = stoi(strNumber), count = 0,
       decimalDivide = decimalConversion;
+  char modDecimal;
   string binaryToConvert;
   while (decimalDivide != 1) {
-    binaryToConvert[count] = decimalConversion % 2;
+    modDecimal = decimalConversion % 2;
+    binaryToConvert[count] = modDecimal;
     count++;
     decimalDivide /= 2;
   }
