@@ -204,7 +204,6 @@ string decimalToBinary (const string& strNumber) {
     decimalDivide /= 2;
   }
   binaryToConvert[count] = decimalDivide % 2;
-  cout << binaryToConvert;
   return binaryToConvert;
 }
 
