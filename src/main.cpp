@@ -195,15 +195,17 @@ string binaryToDecimal (const string& strNumber) {
  Returned:	 	string representing the binary equivalent
  ******************************************************************************/
 string decimalToBinary (const string& strNumber) {
-  int decimalConversion = stoi(strNumber), count = 0;
-  string binaryToConvert, binaryConverted;
-  
-  while (decimalConversion /= 2 != 1) {
+  int decimalConversion = stoi(strNumber), count = 0,
+      decimalDivide = decimalConversion;
+  string binaryToConvert;
+  while (decimalDivide != 1) {
     binaryToConvert[count] = decimalConversion % 2;
     count++;
+    decimalDivide /= 2;
   }
-
-  return binaryConverted;
+  binaryToConvert[count] = decimalDivide % 2;
+  cout << binaryToConvert;
+  return binaryToConvert;
 }
 
 /*******************************************************************************
@@ -224,25 +226,31 @@ string decimalToHex (const string& strNumber) {
     if (returningInt > 9) {
       if (returningInt == 10) {
         hexChar = 'A';
+        returningInt -= 10;
       }
       else if (returningInt == 11) {
         hexChar = 'B';
+        returningInt -= 11;
       }
       else if (returningInt == 12) {
         hexChar = 'C';
+        returningInt -= 12;
       }
       else if (returningInt == 13) {
         hexChar = 'D';
+        returningInt -= 13;
       }
       else if (returningInt == 14) {
         hexChar = 'E';
+        returningInt -= 14;
       }
       else if (returningInt == 15) {
         hexChar = 'F';
+        returningInt -= 15;
       }
     }
     hexString += hexChar;
-    returningInt = decimalInt % 16;
+    returningInt %= 16;
   }
   if (decimalInt > 9) {
     if (returningInt == 10) {
