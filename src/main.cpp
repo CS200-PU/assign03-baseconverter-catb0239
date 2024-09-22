@@ -37,9 +37,8 @@ int main () {
   const string MY_TITLE = "*****HEX-DECIMAL-BINARY CONVERTER*****",
     USER_PROMPT = "Enter your string to convert (q to quit):";
 
-  const char DECIMAL = 'D', BINARY = 'B', HEXADECIMAL = 'H', QUIT = 'q';
-  string myNumber, convertedString;
-  char baseChar = '\0';
+  const string DECIMAL = "D", BINARY = "B", HEXADECIMAL = "H", QUIT = "q";
+  string myNumber, convertedString, baseChar;
   printTitle (MY_TITLE);
   myNumber = getNumber (USER_PROMPT);
   baseChar = getBase (myNumber);
@@ -48,9 +47,9 @@ int main () {
   }
   while (baseChar != QUIT) {
     if (baseChar == DECIMAL) {
-      convertedString = decimalToBinary(myNumber);
+      convertedString = decimalToBinary (myNumber);
       cout << "The binary conversion is: " << convertedString << endl;
-      convertedString = decimalToHex(myNumber);
+      convertedString = decimalToHex (myNumber);
       cout << "The hexadecimal conversion is: " << convertedString << endl;
     }
     else if (baseChar == HEXADECIMAL) {
@@ -64,6 +63,9 @@ int main () {
         << endl;
     }
     myNumber = getNumber (USER_PROMPT);
+    if (myNumber != DECIMAL && myNumber != HEXADECIMAL && myNumber != BINARY) {
+      myNumber = QUIT;
+    }
     baseChar = getBase (myNumber);
   }
   return EXIT_SUCCESS;
@@ -143,7 +145,7 @@ string getNumber (const string& prompt) {
  ******************************************************************************/
 char getBase (const string& strNumber) {
   const string BINARY_PREFIX = "0b", HEXADECIMAL_PREFIX = "0x";
-  const char BINARY = 'B', HEXADECIMAL = 'H', DECIMAL = 'D';
+  const char BINARY = 'B', HEXADECIMAL = 'H', DECIMAL = 'D', QUIT = 'q';
   int strLen = strNumber.length ();
   char originalNumPrefix;
 
@@ -156,6 +158,8 @@ char getBase (const string& strNumber) {
         originalNumPrefix = HEXADECIMAL;
       }
     }
+  } else if (strLen < 2) {
+    originalNumPrefix = QUIT;
   }
   else {
     originalNumPrefix = DECIMAL;
@@ -196,21 +200,21 @@ string binaryToDecimal (const string& strNumber) {
  ******************************************************************************/
 string decimalToBinary (const string& strNumber) {
   const char BINARY = 'b';
-  int decimalConversion = stoi(strNumber), count = 0,
-      decimalDivide = decimalConversion, modDecimal;
+  int decimalConversion = stoi (strNumber), count = 0,
+    decimalDivide = decimalConversion, modDecimal;
   string decimalToConvert;
-  decimalToConvert += to_string(count);
+  decimalToConvert += to_string (count);
   count++;
   decimalToConvert += BINARY;
   count++;
   while (decimalDivide != 1) {
     modDecimal = decimalConversion % 2;
-    decimalToConvert += to_string(modDecimal);
+    decimalToConvert += to_string (modDecimal);
     count++;
     decimalDivide /= 2;
   }
   modDecimal = decimalDivide % 2;
-  decimalToConvert += to_string(modDecimal);
+  decimalToConvert += to_string (modDecimal);
   return decimalToConvert;
 }
 
@@ -225,37 +229,39 @@ string decimalToBinary (const string& strNumber) {
  ******************************************************************************/
 string decimalToHex (const string& strNumber) {
   string hexString;
-  hexString += '0x';
+  hexString += '0';
+  hexString += 'x';
   char hexChar;
   int decimalInt = stoi (strNumber), returningInt;
   returningInt = decimalInt % 16;
   while (returningInt != 0) {
-    if (returningInt > 9) {
-      hexChar += decimalInt;
-    } else if (returningInt == 10) {
-        hexChar = 'A';
-        returningInt -= 10;
-      }
-      else if (returningInt == 11) {
-        hexChar = 'B';
-        returningInt -= 11;
-      }
-      else if (returningInt == 12) {
-        hexChar = 'C';
-        returningInt -= 12;
-      }
-      else if (returningInt == 13) {
-        hexChar = 'D';
-        returningInt -= 13;
-      }
-      else if (returningInt == 14) {
-        hexChar = 'E';
-        returningInt -= 14;
-      }
-      else if (returningInt == 15) {
-        hexChar = 'F';
-        returningInt -= 15;
-      }
+    if (returningInt < 9) {
+      hexString += to_string (decimalInt);
+    }
+    else if (returningInt == 10) {
+      hexChar = 'A';
+      returningInt -= 10;
+    }
+    else if (returningInt == 11) {
+      hexChar = 'B';
+      returningInt -= 11;
+    }
+    else if (returningInt == 12) {
+      hexChar = 'C';
+      returningInt -= 12;
+    }
+    else if (returningInt == 13) {
+      hexChar = 'D';
+      returningInt -= 13;
+    }
+    else if (returningInt == 14) {
+      hexChar = 'E';
+      returningInt -= 14;
+    }
+    else if (returningInt == 15) {
+      hexChar = 'F';
+      returningInt -= 15;
+    }
     hexString += hexChar;
     returningInt %= 16;
   }
@@ -296,7 +302,7 @@ string decimalToHex (const string& strNumber) {
 string hexToDecimal (const string& strNumber) {
   int num = 0;
   for (int i = 2; i < strNumber.length (); i++) {
-    num += hexCharToInt(strNumber[i]);
+    num += hexCharToInt (strNumber[i]);
   }
   return to_string (num);
 }
