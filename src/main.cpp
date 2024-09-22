@@ -234,9 +234,8 @@ string decimalToBinary (const string& strNumber) {
  Returned:	 	string representing the hexadecimal equivalent
  ******************************************************************************/
 string decimalToHex (const string& strNumber) {
+  const char START = '0', HEX = 'x';
   string hexString;
-  hexString += '0';
-  hexString += 'x';
   char hexChar;
   int decimalInt = stoi (strNumber), returningInt;
   returningInt = decimalInt % 16;
@@ -271,28 +270,40 @@ string decimalToHex (const string& strNumber) {
     hexString += hexChar;
     returningInt %= 16;
   }
-  if (decimalInt > 9) {
-    if (returningInt == 10) {
-      hexChar = 'A';
-    }
-    else if (returningInt == 11) {
-      hexChar = 'B';
-    }
-    else if (returningInt == 12) {
-      hexChar = 'C';
-    }
-    else if (returningInt == 13) {
-      hexChar = 'D';
-    }
-    else if (returningInt == 14) {
-      hexChar = 'E';
-    }
-    else if (returningInt == 15) {
-      hexChar = 'F';
-    }
+  if (returningInt < 9) {
+    hexString += to_string (decimalInt);
   }
-  hexString += hexChar;
-  hexString = reverseString (hexString);
+  else if (returningInt == 10) {
+    hexChar = 'A';
+    returningInt -= 10;
+  }
+  else if (returningInt == 11) {
+    hexChar = 'B';
+    returningInt -= 11;
+  }
+  else if (returningInt == 12) {
+    hexChar = 'C';
+    returningInt -= 12;
+  }
+  else if (returningInt == 13) {
+    hexChar = 'D';
+    returningInt -= 13;
+  }
+  else if (returningInt == 14) {
+    hexChar = 'E';
+    returningInt -= 14;
+  }
+  else if (returningInt == 15) {
+    hexChar = 'F';
+    returningInt -= 15;
+  }
+  if (decimalInt == 0) {
+    hexString = to_string (decimalInt);
+  }
+  else {
+    hexString += hexChar;
+    hexString = reverseString (hexString);
+  }
   return hexString;
 }
 
