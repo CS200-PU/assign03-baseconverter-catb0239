@@ -47,15 +47,15 @@ int main () {
   }
   while (baseChar != QUIT) {
     if (baseChar == DECIMAL) {
-      cout << "The binary conversion is:  " << decimalToBinary(myNumber)
-           << endl;
-      cout << "The hexadecimal conversion is:  " << decimalToHex(myNumber)
-           << endl << endl;
+      cout << "The binary conversion is:  " << decimalToBinary (myNumber)
+        << endl;
+      cout << "The hexadecimal conversion is:  " << decimalToHex (myNumber)
+        << endl << endl;
     }
     else if (baseChar == HEXADECIMAL) {
       cout << "The decimal conversion is: " << hexToDecimal (myNumber) << endl;
       cout << "The binary conversion is: " << hexToBinary (myNumber) << endl
-           << endl;
+        << endl;
     }
     else if (baseChar == BINARY) {
       cout << "The decimal conversion is: " << binaryToDecimal (myNumber)
@@ -183,7 +183,7 @@ char getBase (const string& strNumber) {
  ******************************************************************************/
 string binaryToDecimal (const string& strNumber) {
   const int BINARY_NUM = 2;
-  int convertedNum = 0, count = strNumber.length();
+  int convertedNum = 0, count = strNumber.length ();
   count--;
 
   for (int i = 2; i < strNumber.length (); i++) {
@@ -224,7 +224,7 @@ string decimalToBinary (const string& strNumber) {
   }
   modDecimal = decimalDivide % 2;
   decimalToConvert += to_string (modDecimal);
-  return reverseString(decimalToConvert);
+  return reverseString (decimalToConvert);
 }
 
 /*******************************************************************************
@@ -242,11 +242,12 @@ string decimalToHex (const string& strNumber) {
   hexString += START;
   hexString += HEX;
   char hexChar;
-  int decimalInt = stoi (strNumber), returningInt;
+  int decimalInt = stoi (strNumber), returningInt, divisionHex;
   returningInt = decimalInt % 16;
-  while (returningInt != 0) {
+  divisionHex = decimalInt / 16;
+  while (divisionHex != 0) {
     if (returningInt < 9) {
-      hexString += to_string (decimalInt);
+      hexString += to_string (divisionHex);
     }
     else if (returningInt == 10) {
       hexChar = 'A';
@@ -272,11 +273,11 @@ string decimalToHex (const string& strNumber) {
       hexChar = 'F';
       returningInt -= 15;
     }
-    hexString += hexChar;
-    returningInt %= 16;
+    returningInt = divisionHex % 16;
+    divisionHex /= 16;
   }
   if (returningInt < 9) {
-    hexString += to_string (decimalInt);
+    hexString += to_string (divisionHex);
   }
   else if (returningInt == 10) {
     hexChar = 'A';
@@ -364,13 +365,14 @@ string binaryToHex (const string& strNumber) {
  Returned:	 	reversed string
 *******************************************************************************/
 string reverseString (string& strToReverse) {
-  string reversedString[strToReverse.length()], stringReversed;
+  string reversedString[strToReverse.length ()], stringReversed;
   int count = strToReverse.length ();
   stringReversed += '0';
   for (int i = 1; i < 2; ++i) {
     if (strToReverse[i] == 'b') {
       stringReversed += 'b';
-    } else {
+    }
+    else {
       stringReversed += 'x';
     }
   }
@@ -378,7 +380,7 @@ string reverseString (string& strToReverse) {
     reversedString[i] = strToReverse[count];
     --count;
   }
-  for (int i = 2; i < strToReverse.length(); i++) {
+  for (int i = 2; i < strToReverse.length (); i++) {
     stringReversed += reversedString[i];
   }
   return stringReversed;
