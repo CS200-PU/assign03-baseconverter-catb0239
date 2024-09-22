@@ -144,12 +144,15 @@ string getNumber (const string& prompt) {
  Returned:	 	D if its decimal, H if its hexadecimal, B if its binary
  ******************************************************************************/
 char getBase (const string& strNumber) {
-  const string BINARY_PREFIX = "0b", HEXADECIMAL_PREFIX = "0x";
-  const char BINARY = 'B', HEXADECIMAL = 'H', DECIMAL = 'D', QUIT = 'q';
+  const string BINARY_PREFIX = "0b", HEXADECIMAL_PREFIX = "0x", QUIT = "q";
+  const char BINARY = 'B', HEXADECIMAL = 'H', DECIMAL = 'D', QUIT_CHAR = 'q';
   int strLen = strNumber.length ();
   char originalNumPrefix;
 
-  if (strLen > 2) {
+  if (strNumber == QUIT) {
+    originalNumPrefix = QUIT_CHAR;
+  }
+  else if (strLen > 2) {
     for (int i = 0; i <= 1; ++i) {
       if (strNumber[i] == BINARY_PREFIX[i]) {
         originalNumPrefix = BINARY;
@@ -158,8 +161,6 @@ char getBase (const string& strNumber) {
         originalNumPrefix = HEXADECIMAL;
       }
     }
-  } else if (strLen < 2) {
-    originalNumPrefix = QUIT;
   }
   else {
     originalNumPrefix = DECIMAL;
@@ -207,11 +208,16 @@ string decimalToBinary (const string& strNumber) {
   count++;
   decimalToConvert += BINARY;
   count++;
-  while (decimalDivide != 1) {
-    modDecimal = decimalConversion % 2;
-    decimalToConvert += to_string (modDecimal);
-    count++;
-    decimalDivide /= 2;
+  if (decimalConversion == 0) {
+    modDecimal = decimalDivide % 2;
+  }
+  else {
+    while (decimalDivide != 1) {
+      modDecimal = decimalConversion % 2;
+      decimalToConvert += to_string (modDecimal);
+      count++;
+      decimalDivide /= 2;
+    }
   }
   modDecimal = decimalDivide % 2;
   decimalToConvert += to_string (modDecimal);
