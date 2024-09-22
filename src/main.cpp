@@ -225,6 +225,7 @@ string decimalToBinary (const string& strNumber) {
  ******************************************************************************/
 string decimalToHex (const string& strNumber) {
   string hexString;
+  hexString += '0x';
   char hexChar;
   int decimalInt = stoi (strNumber), returningInt;
   returningInt = decimalInt % 16;
