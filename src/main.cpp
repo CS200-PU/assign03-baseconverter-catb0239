@@ -236,6 +236,8 @@ string decimalToBinary (const string& strNumber) {
 string decimalToHex (const string& strNumber) {
   const char START = '0', HEX = 'x';
   string hexString;
+  hexString += START;
+  hexString += HEX;
   char hexChar;
   int decimalInt = stoi (strNumber), returningInt;
   returningInt = decimalInt % 16;
@@ -296,9 +298,6 @@ string decimalToHex (const string& strNumber) {
   else if (returningInt == 15) {
     hexChar = 'F';
     returningInt -= 15;
-  }
-  if (decimalInt == 0) {
-    hexString = to_string (decimalInt);
   }
   else {
     hexString += hexChar;
