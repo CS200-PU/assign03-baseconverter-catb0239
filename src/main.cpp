@@ -161,6 +161,9 @@ char getBase (const string& strNumber) {
       else if (strNumber[i] == HEXADECIMAL_PREFIX[i]) {
         originalNumPrefix = HEXADECIMAL;
       }
+      else {
+        originalNumPrefix = DECIMAL;
+      }
     }
   }
   else {
