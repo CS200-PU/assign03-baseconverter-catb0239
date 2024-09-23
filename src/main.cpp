@@ -250,7 +250,7 @@ string decimalToHex (const string& strNumber) {
   divisionHex = decimalInt / 16;
   while (divisionHex != 0) {
     if (returningInt < 9) {
-      hexString += to_string (divisionHex);
+      hexString += to_string (returningInt);
     }
     else if (returningInt == 10) {
       hexChar = 'A';
@@ -280,7 +280,7 @@ string decimalToHex (const string& strNumber) {
     divisionHex /= 16;
   }
   if (returningInt < 9) {
-    hexString += to_string (divisionHex);
+    hexString += to_string (returningInt);
   }
   else if (returningInt == 10) {
     hexChar = 'A';
