@@ -185,9 +185,10 @@ string binaryToDecimal (const string& strNumber) {
   const int BINARY_NUM = 2;
   int convertedNum = 0, count = strNumber.length ();
   count--;
+  count--;
 
   for (int i = 2; i < strNumber.length (); i++) {
-    convertedNum += (BINARY_NUM ^ count);
+    convertedNum += (BINARY_NUM * count);
     count--;
   }
   return to_string (convertedNum);
